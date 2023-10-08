@@ -15,7 +15,10 @@ public class CalculatorTest {
 	
 	@Test
 	public void integerSubstraction() {
-		int result = calculator.integerSubstraction(3, 5);
-		assertEquals(2,result,"5-3 didnot produced 2");
+		int value1=5;
+		int value2=3;
+		int expectedResult=2;
+		int result = calculator.integerSubstraction(value1,value2);
+		assertEquals(expectedResult,result,value1+ "-" + value2+"did not produced" + expectedResult);
 	}
 }
