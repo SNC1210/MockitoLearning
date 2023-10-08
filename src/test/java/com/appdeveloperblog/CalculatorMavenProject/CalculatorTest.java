@@ -6,13 +6,20 @@ import org.junit.Test;
 
 public class CalculatorTest {
 	Calculator calculator = new Calculator();
+	
+	//test<System under test>_<Condition or state change>_<Expected Result>
 
 	@Test
-	public void integerDivison() {
+	public void testIntegerDivison_WhenFourIsDivisbleByTwo_ShouldReturnTwo() {
 		int result = calculator.integerDivision(4,2);
 		assertEquals(2, result,"4/2 didnot produced 2");
 	}
 	
+    @Test
+    public void testIntegerDivison_WhenDividendIsDivisbleByZero_ShouldThroughArithmeticException() {
+    
+    }
+    
 	@Test
 	public void integerSubstraction() {
 		int value1=5;
