@@ -2,24 +2,29 @@ package com.appdeveloperblog.CalculatorMavenProject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+@DisplayName("Test Math OPeration in Calculator class")
 public class CalculatorTest {
 	Calculator calculator = new Calculator();
 	
 	//test<System under test>_<Condition or state change>_<Expected Result>
 
+	@DisplayName("Test 4/2 =2")
 	@Test
 	public void testIntegerDivison_WhenFourIsDivisbleByTwo_ShouldReturnTwo() {
 		int result = calculator.integerDivision(4,2);
 		assertEquals(2, result,"4/2 didnot produced 2");
 	}
 	
+	@DisplayName("Division By Zero")
     @Test
     public void testIntegerDivison_WhenDividendIsDivisbleByZero_ShouldThroughArithmeticException() {
-    
+		fail("Not Implemented Yet");
     }
     
+	@DisplayName("Test 5 -3 =2")
 	@Test
 	public void integerSubstraction() {
 		int value1=5;
