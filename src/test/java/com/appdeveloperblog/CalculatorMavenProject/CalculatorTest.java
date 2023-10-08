@@ -19,6 +19,12 @@ public class CalculatorTest {
 		int value2=3;
 		int expectedResult=2;
 		int result = calculator.integerSubstraction(value1,value2);
-		assertEquals(expectedResult,result,value1+ "-" + value2+"did not produced" + expectedResult);
+		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
+	}
+	
+	@Test
+	public void integerAddition() {
+		int result= calculator.integerAddition(2, 5);
+		assertEquals(7, result,"2 + 5 didn't produced 7");	
 	}
 }

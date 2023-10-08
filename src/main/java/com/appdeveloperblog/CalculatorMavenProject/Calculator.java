@@ -15,4 +15,8 @@ public class Calculator {
 		}
 		return result;
 	}
+	
+   public int integerAddition(int value1, int value2) {
+	  return value1+value2;
+   }
 }
