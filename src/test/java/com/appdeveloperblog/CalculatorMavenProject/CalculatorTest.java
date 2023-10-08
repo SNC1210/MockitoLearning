@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Test Math OPeration in Calculator class")
+@DisplayName("Test Math Operation in Calculator class")
 public class CalculatorTest {
 	Calculator calculator = new Calculator();
 	
@@ -14,8 +14,17 @@ public class CalculatorTest {
 	@DisplayName("Test 4/2 =2")
 	@Test
 	public void testIntegerDivison_WhenFourIsDivisbleByTwo_ShouldReturnTwo() {
-		int result = calculator.integerDivision(4,2);
-		assertEquals(2, result,"4/2 didnot produced 2");
+		//Arrange(Given)
+		    Calculator calculator = new Calculator();
+		    int dividend =4;
+		    int divisor=2;
+		    int expectedResult=2;
+		
+		//Act(When)
+			int actualResult = calculator.integerDivision(dividend,divisor);
+		    
+		//Assert(Then)
+			assertEquals(expectedResult, actualResult,"4/2 didnot produced 2");
 	}
 	
 	@DisplayName("Division By Zero")
