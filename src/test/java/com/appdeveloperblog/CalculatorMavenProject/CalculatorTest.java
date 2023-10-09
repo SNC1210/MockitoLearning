@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Test Math Operation in Calculator class")
 public class CalculatorTest {
@@ -137,5 +138,13 @@ public class CalculatorTest {
 				    Arguments.of(33,1,32),
 				    Arguments.of(23,3,20)
 				);
+	}
+	
+	
+	@ParameterizedTest
+	@ValueSource(strings = {"John","kshitij","srilata"})
+	public void valueSourceDemonstration(String firstName) {
+		System.out.println(firstName);
+		assertNotNull(firstName);
 	}
 }
