@@ -2,20 +2,43 @@ package com.appdeveloperblog.CalculatorMavenProject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Test Math Operation in Calculator class")
 public class CalculatorTest {
-	Calculator calculator = new Calculator();
+	
+	Calculator calculator;
+	
+	@BeforeAll
+	static void setup() {
+		System.out.println("Exceuting @BeforeAll method");
+	}
+	
+	@AfterAll
+	static void cleanup() {
+		System.out.println("Executing @AfterAll method");
+	}
+	
+	@BeforeEach
+	void beforeEachTestMethod() {
+		calculator = new Calculator();
+	  System.out.println("Executing @BeforeEach method");
+	}
+	
+	@AfterEach
+	void afterEachTestMethod() {
+		System.out.println("Exceuting @AfterEach Method");
+	}
+	
 	
 	//test<System under test>_<Condition or state change>_<Expected Result>
 
 	@DisplayName("Test 4/2 =2")
 	@Test
 	public void testIntegerDivison_WhenFourIsDivisbleByTwo_ShouldReturnTwo() {
+		System.out.println("Test 4/2 = 2");
 		//Arrange(Given)
-		    Calculator calculator = new Calculator();
 		    int dividend =4;
 		    int divisor=2;
 		    int expectedResult=2;
@@ -30,12 +53,14 @@ public class CalculatorTest {
 	@DisplayName("Division By Zero")
     @Test
     public void testIntegerDivison_WhenDividendIsDivisbleByZero_ShouldThroughArithmeticException() {
+		System.out.println("Test Division By Zero");
 		fail("Not Implemented Yet");
     }
     
 	@DisplayName("Test 5 -3 =2")
 	@Test
-	public void integerSubstraction() {
+	public void testIntegerSubstraction_WhenThreeIsSubtractedFromFive_ShouldGivesTwo() {
+		System.out.println("Test 5-3 = 2");
 		int value1=5;
 		int value2=3;
 		int expectedResult=2;
@@ -43,8 +68,10 @@ public class CalculatorTest {
 		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
 	}
 	
+	@DisplayName("Test 2 + 5 = 7")
 	@Test
-	public void integerAddition() {
+	public void testIntegerAddition_WhenTwoIsAddedWithFive_ShouldGiveSeven() {
+		System.out.println("Test 2 + 5 = 7");
 		int result= calculator.integerAddition(2, 5);
 		assertEquals(7, result,"2 + 5 didn't produced 7");	
 	}
