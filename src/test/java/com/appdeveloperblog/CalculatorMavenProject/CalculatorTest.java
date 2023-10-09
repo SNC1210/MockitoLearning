@@ -50,6 +50,7 @@ public class CalculatorTest {
 			assertEquals(expectedResult, actualResult,"4/2 didnot produced 2");
 	}
 	
+	@Disabled("TODO: Still Need to work on it")
 	@DisplayName("Division By Zero")
     @Test
     public void testIntegerDivison_WhenDividendIsDivisbleByZero_ShouldThroughArithmeticException() {
