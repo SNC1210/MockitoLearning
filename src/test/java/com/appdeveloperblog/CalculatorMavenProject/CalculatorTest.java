@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -110,6 +111,16 @@ public class CalculatorTest {
 		int result = calculator.integerSubstraction(value1,value2);
 		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
 	}
+	
+	@DisplayName("Test Integer Substraction using CSV File Source (resource = \"/\")")
+	@ParameterizedTest
+	@CsvFileSource(resources = "/integerSubstraction.csv")
+	public void integerSubstractionUsingCSVSourceFile(int value1, int value2, int expectedResult) {
+		System.out.println("Running Test"+ value1 + "-" + value2+ "="+ expectedResult );
+		int result = calculator.integerSubstraction(value1,value2);
+		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
+	}
+	
 	
 	@DisplayName("Test 2 + 5 = 7")
 	@Test
