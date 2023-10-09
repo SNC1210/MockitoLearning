@@ -2,8 +2,13 @@ package com.appdeveloperblog.CalculatorMavenProject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayName("Test Math Operation in Calculator class")
 public class CalculatorTest {
@@ -81,11 +86,31 @@ public class CalculatorTest {
 		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
 	}
 	
+	@DisplayName("Test Integer Substraction (value1, value2,expectedResult)")
+	@ParameterizedTest
+	//@MethodSource("integerSubstractionInputParameter") //another way to do the work here we give stream resource same name
+	@MethodSource()
+	public void integerSubstractionInputParameter(int value1, int value2, int expectedResult) {
+		System.out.println("Running Test"+ value1 + "-" + value2+ "="+ expectedResult );
+		int result = calculator.integerSubstraction(value1,value2);
+		assertEquals(expectedResult,result,()-> value1+ "-" + value2+"did not produced" + expectedResult);
+	}
+	
+	
 	@DisplayName("Test 2 + 5 = 7")
 	@Test
 	public void testIntegerAddition_WhenTwoIsAddedWithFive_ShouldGiveSeven() {
 		System.out.println("Test 2 + 5 = 7");
 		int result= calculator.integerAddition(2, 5);
 		assertEquals(7, result,"2 + 5 didn't produced 7");	
+	}
+	
+	private static Stream<Arguments> integerSubstractionInputParameter() {
+		
+		return Stream.of(
+				    Arguments.of(5,3,2),
+				    Arguments.of(33,1,32),
+				    Arguments.of(23,3,20)
+				);
 	}
 }
