@@ -128,6 +128,9 @@ public class UserServiceTest {
 		    doThrow(EmailNotificationServiceException.class)
 		    	   .when(emailNotificationService)
 		    	   .scheduleEmailConfirmation(any(User.class));
+		    //this doNothing will make sure to stop the method
+//		    doNothing().when(emailNotificationService)
+//		               .scheduleEmailConfirmation(any(User.class));
 		//Act and assert
 		    assertThrows(UserServiceException.class, ()-> {
 				 userService.createUser(firstName, lastName, email, password, repeatPassword);
