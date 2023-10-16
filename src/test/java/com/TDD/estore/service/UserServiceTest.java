@@ -2,6 +2,7 @@ package com.TDD.estore.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,7 +48,7 @@ public class UserServiceTest {
 	@DisplayName("User Object Created")
 	void testCreateUser_WhenUserDetailsIsProvided_returnUserObject() {
 		//Arrange
-		Mockito.when(userRepository.save(any(User.class))).thenReturn(true);
+		when(userRepository.save(any(User.class))).thenReturn(true);
 	     
 		//Act
 		 User user= userService.createUser(firstName,lastName,email,password,repeatPassword);
@@ -95,6 +96,20 @@ public class UserServiceTest {
 		//Assert
 		 assertEquals(expectedExceptionMessage,thrown.getMessage(),"User lastname is not null");
 		
+	}
+	
+	@DisplayName("If Save Method Cause RuntimeException , a UserException is thrown")
+	@Test
+	void testCreateUser_WhenSaveMethodThrowsexception_thenThrowsUserSericeexception() {
+		//Arrange
+		when(userRepository.save(any(User.class))).thenThrow(RuntimeException.class);
+		
+		//Act and assert
+		 assertThrows(UserServiceException.class, ()-> {
+			 userService.createUser(firstName, lastName, email, password, repeatPassword);
+		 },"should have thrown UsererviceException instead");
+		
+		//Assert
 	}
 	
 }
