@@ -1,5 +1,7 @@
 package com.TDD.estore.service;
 
+import java.util.UUID;
+
 import com.TDD.estore.model.User;
 
 public class UserServiceImpl implements UserService {
@@ -11,7 +13,7 @@ public class UserServiceImpl implements UserService {
 			String password,
 			String repeatPassword) {
 		
-		return new User(firstName,lastName,email);
+		return new User(firstName,lastName,email,UUID.randomUUID().toString());
 		
 	}
 }

@@ -3,12 +3,21 @@ package com.TDD.estore.model;
 public class User {
 
 	private String firstName, lastName,email;
+	private String Id;
 	
-	public User(String firstName, String lastName, String email) {
+	public User(String firstName, String lastName, String email, String Id) {
 		super();
 		this.firstName = firstName;
 		this.lastName= lastName;
 		this.email = email;
+		this.Id=Id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return Id;
 	}
 
 	/**
