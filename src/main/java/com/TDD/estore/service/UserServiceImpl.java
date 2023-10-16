@@ -9,10 +9,12 @@ import com.TDDMockito.estore.data.UserRepository;
 public class UserServiceImpl implements UserService {
 	
 	 UserRepository  userRepository;
+	 EmailNotificationService emailNotificationService;
 
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository, EmailNotificationService emailNotificationService) {
 		super();
 		this.userRepository = userRepository;
+		this.emailNotificationService= emailNotificationService;
 	}
 
 
@@ -41,6 +43,12 @@ public class UserServiceImpl implements UserService {
 		  }
 		  
 		  if(!isUserCreated) throw new UserServiceException("could not create user");
+		  try {
+			  emailNotificationService.scheduleEmailConfirmation(user); 
+		  }catch(RuntimeException ex) {
+			  throw new UserServiceException(ex.getMessage()); 
+		  }
+		  
 		return user;
 		
 	}
