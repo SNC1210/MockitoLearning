@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.TDD.estore.model.User;
@@ -46,7 +47,7 @@ public class UserServiceTest {
 	@DisplayName("User Object Created")
 	void testCreateUser_WhenUserDetailsIsProvided_returnUserObject() {
 		//Arrange
-		Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(true);
+		Mockito.when(userRepository.save(any(User.class))).thenReturn(true);
 	     
 		//Act
 		 User user= userService.createUser(firstName,lastName,email,password,repeatPassword);
@@ -57,6 +58,9 @@ public class UserServiceTest {
 	     assertEquals(lastName, user.getLastName(),"user last name is incorrect");
 	     assertEquals(email,user.getEmail(),"user email is incorrect");
 	     assertNotNull(user.getId(),"user id is missing");
+	     //Mockito.verify(userRepository,times(1)).save(any(User.class));
+	     Mockito.verify(userRepository).save(any(User.class));  
+	     
 	     
 	}
 	
