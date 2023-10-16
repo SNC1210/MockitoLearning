@@ -3,6 +3,8 @@ package com.TDD.estore.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,18 +12,29 @@ import com.TDD.estore.model.User;
 
 public class UserServiceTest {
 	
+	UserService userService; 
+    String firstName;
+    String lastName;
+    String email;
+    String password;
+    String repeatPassword;
+	
+	
+	@BeforeEach
+	void init() {
+		 userService = new UserServiceImpl(); 
+	     firstName="AADI";
+	     lastName="Annant";
+	     email="annand.com";
+	     password="1234567";
+	     repeatPassword ="1234567";
+	}
 	
 
 	@Test
 	@DisplayName("User Object Created")
 	void testCreateUser_WhenUserDetailsIsProvided_returnUserObject() {
-		//Arrange
-	     UserService userService = new UserServiceImpl(); 
-	     String firstName="AADI";
-	     String lastName="Annant";
-	     String email="annand.com";
-	     String password="1234567";
-	     String repeatPassword ="1234567";
+		
 	     
 		//Act
 		 User user= userService.createUser(firstName,lastName,email,password,repeatPassword);
@@ -33,6 +46,22 @@ public class UserServiceTest {
 	     assertEquals(email,user.getEmail(),"user email is incorrect");
 	     assertNotNull(user.getId(),"user id is missing");
 	     
+	}
+	
+	@DisplayName("Empty first name causes correct exception")
+	@Test
+	void testCreateUser_WhenFirstNameIsEmpty_throwsIllegalArgumentException() {
+		//Arrange
+	     String firstName="";
+	     String expectedExceptionMessage = "User firstname is empty";
+	     //Act and Assert
+		 IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
+			 userService.createUser(firstName, lastName, email, password, repeatPassword);
+		 },"Empty First name should cause an illegal argument exception"); 
+	     
+		//Assert
+		 assertEquals(expectedExceptionMessage,thrown.getMessage(),"User firstname is not null");
+		
 	}
 	
 }

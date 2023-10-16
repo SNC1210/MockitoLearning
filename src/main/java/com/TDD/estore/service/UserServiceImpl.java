@@ -13,6 +13,10 @@ public class UserServiceImpl implements UserService {
 			String password,
 			String repeatPassword) {
 		
+		if(firstName == null || firstName.trim().length() == 0) {
+			throw new IllegalArgumentException("User firstname is empty");
+		}
+		
 		return new User(firstName,lastName,email,UUID.randomUUID().toString());
 		
 	}
