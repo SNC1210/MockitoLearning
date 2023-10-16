@@ -53,6 +53,7 @@ public class UserServiceTest {
 	void testCreateUser_WhenFirstNameIsEmpty_throwsIllegalArgumentException() {
 		//Arrange
 	     String firstName="";
+	     String lastName="";
 	     String expectedExceptionMessage = "User firstname is empty";
 	     //Act and Assert
 		 IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
@@ -61,6 +62,22 @@ public class UserServiceTest {
 	     
 		//Assert
 		 assertEquals(expectedExceptionMessage,thrown.getMessage(),"User firstname is not null");
+		
+	}
+	
+	@DisplayName("Empty last name causes correct exception")
+	@Test
+	void testCreateUser_WhenLastNameIsEmpty_throwsIllegalArgumentException() {
+		//Arrange
+	     String lastName="";
+	     String expectedExceptionMessage = "User lastName is empty";
+	     //Act and Assert
+		 IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
+			 userService.createUser(firstName, lastName, email, password, repeatPassword);
+		 },"Empty First name should cause an illegal argument exception"); 
+	     
+		//Assert
+		 assertEquals(expectedExceptionMessage,thrown.getMessage(),"User lastname is not null");
 		
 	}
 	
